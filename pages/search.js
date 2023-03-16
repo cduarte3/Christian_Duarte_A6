@@ -42,7 +42,6 @@ export default function Search() {
             errors.q = "Enter Search Query";
         }
     }
-
     return (
         <>
             <Form onSubmit={handleSubmit(submitForm)}>

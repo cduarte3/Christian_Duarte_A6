@@ -2,11 +2,13 @@ import { useAtom } from 'jotai';
 import { searchHistoryAtom } from '@/store';
 import { useRouter } from 'next/router';
 import Card from 'react-bootstrap/Card';
-
+import ListGroup from 'react-bootstrap/ListGroup';
+import styles from '@/styles/History.module.css';
+import Button from 'react-bootstrap/Button';
 
 export default function History() {
 
-    const [searchHistory] = useAtom(searchHistoryAtom);
+    const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
     const router = useRouter();
 
     let parsedHistory = [];
@@ -17,7 +19,7 @@ export default function History() {
     });
 
     function historyClicked(e, index) {
-        router.push(`/artwork?${searchHistory}[${index}]`);
+        router.push(`/artwork?${searchHistory[index]}`);
     }
 
     function removeHistoryClicked(e, index) {
@@ -32,20 +34,22 @@ export default function History() {
     if (parsedHistory != null || parsedHistory != undefined) {
         return (
             <>
+                <br />
                 <ListGroup>
-                    <ListGroup.Item>{Object.keys(historyItem).map(key => (<>{key}: <strong>{historyItem[key]}</strong>&nbsp;</>))}</ListGroup.Item>
+                    {parsedHistory.length > 0 ? parsedHistory.map((item, index) => (
+                        <ListGroup.Item key={index} className={styles.historyListItem} onClick={e => historyClicked(e, index)}>
+                            {Object.keys(item).map((key) => (
+                                <span key={key}>
+                                    {key}: <strong>{item[key]}</strong>&nbsp;
+                                </span>
+                            ))}
+                            <Button className="float-end" variant="danger" size="sm"
+                                onClick={e => removeHistoryClicked(e, index)}>&times;</Button>
+
+                        </ListGroup.Item>
+                    )) : <Card className='text-center'><br /><h4>Nothing Here</h4><p>Try searching for some Artwork</p><br /></Card>}
                 </ListGroup>
             </>
         );
     }
-    else{
-        return(
-            <>
-                <Card>
-                    <h2>Nothing here. Try searching for some Artwork.</h2>
-                </Card>
-            </>
-        );
-    }
-
 }

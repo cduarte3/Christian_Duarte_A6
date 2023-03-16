@@ -11,14 +11,14 @@ import { useAtom } from 'jotai';
 import {searchHistoryAtom} from '@/store';
 
 export default function MainNav() {
-    const [searchHistory] = useAtom(searchHistoryAtom);
-
     const [isExpanded, setIsExpanded] = useState(false);
+    const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
     const router = useRouter();
     const handleSearch = (e) => {
         e.preventDefault();
         const searchItem = e.target.search.value;
         if (searchItem != '') {
+            const queryString = `title=true&q=${searchItem}`;
             router.push(`/artwork?title=true&q=${searchItem}`);
             setSearchHistory(current => [...current, queryString]);
             setIsExpanded(false);
