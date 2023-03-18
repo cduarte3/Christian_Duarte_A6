@@ -44,12 +44,12 @@ export default function MainNav() {
                     <Navbar.Collapse id="basic-navbar-nav" className={isExpanded ? 'show' : ''}>
                         <Nav className="me-auto" onClick={handleClose}>
                             <Link href="/" passHref legacyBehavior>
-                                <Nav.Link href="/">
+                                <Nav.Link href="/" active={router.pathname === "/"}>
                                     Home
                                 </Nav.Link>
                             </Link>
                             <Link href="/search" passHref legacyBehavior>
-                                <Nav.Link href="/search">
+                                <Nav.Link href="/search" active={router.pathname === "/search"}>
                                     Advanced Search
                                 </Nav.Link>
                             </Link>
@@ -69,10 +69,10 @@ export default function MainNav() {
                         <Nav>
                             <NavDropdown title="User Name">
                                 <Link href="/favourites" passHref legacyBehavior>
-                                    <NavDropdown.Item href="/favourites">Favourites</NavDropdown.Item>
+                                    <NavDropdown.Item href="/favourites" active={router.pathname === "/favourites"}>Favourites</NavDropdown.Item>
                                 </Link>
                                 <Link href="/history" passHref legacyBehavior>
-                                    <NavDropdown.Item href="/history">Search History</NavDropdown.Item>
+                                    <NavDropdown.Item href="/history" active={router.pathname === "/history"}>Search History</NavDropdown.Item>
                                 </Link>
                             </NavDropdown>
                         </Nav>

@@ -58,7 +58,7 @@ export default function ArtWorkCardDetail({ objectID }) {
                                 </div>
                             ) : <div><strong>Wiki: </strong>N/A</div>}
                             <strong>Credit Line: </strong>{data?.creditLine ? data?.creditLine : "Credit Line: N/A"}<br/>
-                            <strong>Dimensions: </strong>{data?.dimensions ? data?.dimensions : "Dimensions: N/A"}<br/>
+                            <strong>Dimensions: </strong>{data?.dimensions ? data?.dimensions : "Dimensions: N/A"}<br/><br/>
                             <Button variant={showAdded === true ? "primary" : "outline-primary"} onClick={favouritesClicked}>{showAdded === true ? "+ Favourite (added)" : "+ Favourite"}</Button>
                         </Card.Text>
                     </Card.Body>
