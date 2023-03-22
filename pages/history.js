@@ -34,7 +34,7 @@ export default function History() {
     if (parsedHistory != null || parsedHistory != undefined) {
         return (
             <>
-                <br />
+            <br/>
                 <ListGroup>
                     {parsedHistory.length > 0 ? parsedHistory.map((item, index) => (
                         <ListGroup.Item key={index} className={styles.historyListItem} onClick={e => historyClicked(e, index)}>
