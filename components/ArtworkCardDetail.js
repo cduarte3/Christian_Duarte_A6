@@ -5,6 +5,7 @@ import { useAtom } from 'jotai';
 import { favouritesAtom } from '@/store';
 import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
+import { addToFavourites, removeFromFavourites } from '@/lib/userData';
 
 //const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -13,17 +14,17 @@ export default function ArtWorkCardDetail({ objectID }) {
     const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
     const [showAdded, setShowAdded] = useState(false);
 
-    useEffect(() => {
-        setShowAdded(favouritesList.includes(objectID));
-    }, [favouritesList, objectID]);
+    useEffect(()=>{
+        setShowAdded(favouritesList?.includes(objectID))
+    }, [favouritesList])    
 
-    const favouritesClicked = () => {
+    async function favouritesClicked(){
         if(showAdded === true){
-            setFavouritesList(current => current.filter(fav => fav != objectID));
+            setFavouritesList(await removeFromFavourites(objectID))
             setShowAdded(false);
         }
         else{
-            setFavouritesList(current => [...current, objectID]);
+            setFavouritesList(await addToFavourites(objectID))
             setShowAdded(true);
         }
     };

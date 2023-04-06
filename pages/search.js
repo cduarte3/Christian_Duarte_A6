@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { useAtom } from 'jotai';
 import { searchHistoryAtom } from '@/store';
+import { addToHistory } from '@/lib/userData';
 
 export default function Search() {
     const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
@@ -22,7 +23,7 @@ export default function Search() {
             isHighlight: false
         }
     });
-    function submitForm(data) {
+    async function submitForm(data) {
         let queryString = "";
         queryString += data.searchBy + "=true";
         if (data.geoLocation) {
@@ -35,7 +36,7 @@ export default function Search() {
         queryString += "&isHighlight=" + data.isHighlight;
         queryString += "&q=" + data.q;
         if (queryString !== "") {
-            setSearchHistory(current => [...current, queryString]);
+            setSearchHistory(await addToHistory(queryString)) 
             router.push(`/artwork?${queryString}`);
         }
         else {

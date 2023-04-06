@@ -8,6 +8,7 @@ import ArtworkCard from '@/components/ArtworkCard';
 export default function Favourites() {
 
     const [favouritesList] = useAtom(favouritesAtom);
+    if(!favouritesList) return null;
     if (favouritesList != null || favouritesList != undefined) {
         return (
             <>
