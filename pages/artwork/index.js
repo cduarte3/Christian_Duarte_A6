@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Error from 'react-bootstrap/Error';
 import useSWR from 'swr';
 import Card from 'react-bootstrap/Card';
 import Pagination from 'react-bootstrap/Pagination';
 import ArtworkCard from '@/components/ArtworkCard';
 import validObjectIDList from '@/public/data/validObjectIDList.json'
+import { Error } from 'react-bootstrap';
 const PER_PAGE = 12;
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
