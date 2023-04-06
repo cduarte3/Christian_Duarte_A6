@@ -6,7 +6,7 @@
 * 
 *  Name: Christian Duarte Student ID: 158217208 Date: April 5th 2023
 *
-*  Vercel App (Deployed) Link: _____________________________________________________
+*  Vercel App (Deployed) Link: https://christian-duarte-a6.vercel.app/
 *
 ********************************************************************************/ 
 
